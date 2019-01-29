@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--set page title-->
     <title>My Resume - Xuyang Han</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!--load css and js from internal and external resources.-->
     <!-- Bulma Version 0.7.2-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/my resume.css">
@@ -15,8 +17,10 @@
 </head>
 
 <body>
+<!--create sections using hero style-->
 <section class="hero is-fullheight is-dark is-bold">
     <div class="hero-head">
+        <!--create a nav bar and put tabs at the end-->
         <nav class="navbar">
             <div class="container">
                 <div id="navbarMenu" class="navbar-menu">
@@ -35,14 +39,18 @@
     </div>
     <div class="hero-body">
         <div class="container has-text-centered">
+            <!--divide the section into two columns. -->
             <div class="columns is-vcentered">
+                <!--the first column-->
                 <div class="column is-5">
+                    <!--import a random img each time refresh the page-->
                     <figure class="image is-4by3">
                         <img src="https://picsum.photos/800/600/?random" alt="Description">
                     </figure>
                 </div>
 
-
+                <!--the second column-->
+                <!--styled Greetings. and a link goes to my cv.  -->
                 <div class="column is-6 is-offset-1">
                     Hello! I am
                     <h1 class="title is-1">
@@ -65,28 +73,29 @@
         </div>
     </div>
 </section>
-<!-- About -->
+<!-- About Me Section -->
 <section class="section" id="about">
-    <!-- Title -->
+    <!-- Title and my description-->
     <div class="section-heading">
         <h3 class="title is-2">About Me</h3>
         <h4 class="subtitle is-5">Jack of all trades, master of "some"</h4>
         <div class="container">
-            <p>Web developer with more than <strong>2 months</strong> of well-rounded experience.
+            <p>Web developer with more than <strong>4 months</strong> of well-rounded experience.
                 Building the <strong>first Crowd-sourced bathymetry database</strong> in North Canada Area.
                 Have experience on <strong>Full Stack Developing</strong>.
                 Looking for an opportunity to work and upgrade, as well as being involved in an organization that
                 believes in gaining a competitive edge and giving back to the community.</p>
         </div>
     </div>
-
+    <!--create three columns, no gap-->
     <div class="columns has-same-height is-gapless">
+        <!--my profile in the first column-->
         <div class="column">
             <!-- Profile -->
             <div class="card">
                 <div class="card-content">
                     <h3 class="title is-4">Profile</h3>
-
+                    <!--info in the table-->
                     <div class="content">
                         <table class="table-profile">
                             <tr>
@@ -108,6 +117,7 @@
                         </table>
                     </div>
                     <br>
+                    <!--some links to my accounts-->
                     <div class="buttons has-addons is-centered">
                         <a href="https://github.com/xuyangHan" class="button is-link">Github</a>
                         <a href="https://www.linkedin.com/in/xuyang-han-531540112" class="button is-link">LinkedIn</a>
@@ -117,6 +127,7 @@
                 </div>
             </div>
         </div>
+        <!--a random img in the second column-->
         <div class="column">
             <!-- Profile picture -->
             <div class="card">
@@ -127,13 +138,14 @@
                 </div>
             </div>
         </div>
+        <!--my skills level at the third column-->
         <div class="column">
             <!-- Skills -->
             <div class="card">
                 <div class="card-content skills-content">
                     <h3 class="title is-4">Skills</h3>
                     <div class="content">
-
+                        <!--use progress bar to show my skill level-->
                         <article class="media">
                             <div class="media-content">
                                 <div class="content">
@@ -216,6 +228,7 @@
 
 <!-- Resume -->
 <section class="section" id="resume">
+    <!--link goes to my resume-->
     <div class="section-heading">
         <h3 class="title is-2">Resume</h3>
         <h4 class="subtitle is-5">More about my past</h4>
@@ -233,9 +246,10 @@
             <h4 class="subtitle is-5">Get in touch</h4>
         </div>
         <br>
-
-        <div class="columns">
-            <div class="column is-6 is-offset-3">
+<!--create two columns with 2px gap.-->
+        <div class="columns is-2">
+            <!--the first column contains a form to allow user to submit info-->
+            <div class="column is-6">
                 <div class="box">
                     <div class="field">
                         <label class="label">Name</label>
@@ -269,12 +283,52 @@
                     </div>
                 </div>
             </div>
+            <!--the second column embed a google map, showing my location-->
+            <div class="column">
+                <div class="container">
+                    <h3 class="title is-4">My Location: </h3>
+                    <div id="map"></div>
+                </div>
+            </div>
         </div>
 
     </div>
 </section>
 
+<!--js to create google maps using google API-->
+<script>
+    function initMap() {
+        // my position using lat and lonn
+        var myLatLng = {lat: 43.767760, lng: -79.502970};
 
+        // Create a map object and specify the DOM element
+        // for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 12
+        });
+// change marker style
+        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+            map: map,
+            position: myLatLng,
+            icon: image,
+            title: 'Hello World!'
+        });
+// add info window so when click on the marker, the info window will pop up
+        var infoWindowOptions = {content: 'My Location'}
+
+        var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+        google.maps.event.addListener(marker, 'click', function (e) {
+            infoWindow.open(map, marker);
+        });
+    }
+
+</script>
+<!--my api key-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy381OfNCXjdUqgLLMYY7AtESnTjrS5eU&callback=initMap"
+        async defer></script>
 </body>
-
 </html>
